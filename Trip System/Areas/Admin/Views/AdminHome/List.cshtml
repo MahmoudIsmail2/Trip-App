@@ -1,0 +1,60 @@
+﻿@using Trip_System.Resources;
+@using Domains;
+@model List<VwTicket>
+
+<div class="col-12 grid-margin">
+    <a  href=/Admin/AdminHome/Trips class="btn btn-info">@ResGeneral.lblShowTrips</a>
+    <a href=/Admin/AdminHome/Categories class="btn btn-info">Show All Categories</a>
+    <div class="row">
+       
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Recent Tickets</h4>
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                
+                                <th>@ResAdmin.lblimage</th>
+                                <th>@ResAdmin.lblName</th>
+                                <th> @ResAdmin.lblEmail </th>
+                                <th> @ResAdmin.lbltripname </th>
+                                <th> @ResAdmin.lbltripprice</th>
+                                <th> @ResAdmin.lblcityname </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var t in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/Trip Home Page/@t.Imgname" class="me-2" alt="image"> 
+                                    </td>
+                                    <td> @t.Personname </td>
+                                    <td>
+                                        @t.Personemail
+                                    </td>
+                                    <td>@t.Tripname </td>
+                                    <td> @t.Tripprice </td>
+                                    <td> @t.Cityname </td>
+                                </tr>
+
+                            }
+                          
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section DataTable{
+    <!-- Plugin js for this page -->
+    <script src="~/Admin/assets/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="~/Admin/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page -->
+    <script src="~/Admin/assets/js/data-table.js"></script>
+    <!-- End custom js for this page -->
+}

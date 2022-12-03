@@ -1,0 +1,71 @@
+﻿@model List<VwTrip>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">@ResGeneral.lbllsttrips</h4>
+            <div class="card-description">
+                <a href="/Admin/AdminHome/Edit" class="btn btn-gradient-primary btn-fw">@ResGeneral.lblAddNewTrip</a>
+            </div>
+            <table id="order-listing" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th> @ResAdmin.lbltripname </th>
+                        <th> @ResAdmin.lbltripprice </th>
+                        <th> @ResAdmin.lblcategoryname </th>
+                        <th> @ResAdmin.lblcityname </th>
+                        <th> @ResGeneral.lblactions </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var trip in Model)
+                    {
+                        <tr>
+                            <td>
+                                @trip.Tripname
+                            </td>
+                            <td>
+                               @trip.Tripprice
+                            </td>
+                            <td>
+                               @trip.Categoryname
+                            </td>
+                            <td>
+                                @trip.Cityname
+                            </td>
+                            <td>
+                               
+                                <a style="height:max-content"
+                               asp-controller="AdminHome" asp-action="Edit"
+                               asp-route-id="@trip.Tripid"
+                               class="btn btn-info btn-fw">@ResGeneral.lblEdit</a>
+
+
+                                <a asp-controller="AdminHome" asp-action="Delete"
+                               asp-route-id="@trip.Tripid"
+                               class="btn btn-danger btn-fw">@ResGeneral.lblDelete </a>
+                            </td>
+                        </tr>
+
+                    }
+                    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                    @if (ViewBag.Message!= null)
+                    {
+                        <script>
+                            swal("Good job!", "Trip Added Successfully", "success");
+                        </script>
+                    }
+                    @if (ViewBag.update != null)
+                    {
+                        <script>
+                            swal("Good job!", "Trip Updated Successfully", "success");
+                        </script>
+                    }
+
+                
+            </table>          
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,60 @@
+﻿@model List<TbCategory>
+<div class="card-body">
+    <p class="card-description">
+        All Categories
+    </p>
+    <form asp-controller="AdminHome" asp-action="AddCategory" enctype="multipart/form-data" method="post">
+        <div w-50 style="margin-bottom:10px">
+            <button href="/Admin/AdminHome/AddCategory" type="submit" class="btn btn-info" style="margin-bottom:10px,margin-right 10px">Add New Category</button>
+            <a href="/Admin/AdminHome/Trips" class="btn btn-info">Back To Trips</a>
+        </div>
+    
+        <input type="text" name="categoryname" style="width:50%" maxlength="30" min="5" required class="form-control" placeholder="Category Name" />
+
+    </form>
+    <table h-100 w-100 class="table table-bordered">
+        <thead>
+            <tr>
+                
+                <th> category name </th>
+               @* <th> Progress </th>
+                <th> Amount </th>*@
+                <th> Action </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cat in Model)
+            {
+                
+                    <tr>
+                                      
+
+                        <td> @cat.Categoryname </td>
+                       @* <td>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </td>
+                        <td> $ 77.99 </td>*@
+                        <td> <a asp-controller="AdminHome" asp-action="DeleteCategory" asp-route-categoryid="@cat.Categoryid"  class="btn btn-danger">Delete</a> </td>
+                    </tr>
+                
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@if (ViewBag.message != null)
+{
+    <script>
+        swal("Good job!", "Category  Added Successfully", "success");
+    </script>
+}
+@if (ViewBag.deletemessage != null)
+{
+    <script>
+        swal("Good job!", "Category  Deleted Successfully", "success");
+    </script>
+}

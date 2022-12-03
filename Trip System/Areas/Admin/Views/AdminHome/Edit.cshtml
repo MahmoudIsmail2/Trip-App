@@ -1,0 +1,93 @@
+﻿@using Trip_System.Areas.Admin.Models
+@model VmEditPage
+<div class="content-wrapper d-flex align-items-center auth">
+    <div class="row flex-grow">
+        <div class="col-lg-6 mx-auto">
+            <div class="auth-form-light text-left p-5">
+                <div class="brand-logo">
+                    <img src="~/Admin/assets/images/logo.svg">
+                </div>
+                <form method="post" asp-action="Save" asp-controller="AdminHome" enctype="multipart/form-data" class="pt-3">
+                    @if (Model.Trip != null)
+                    {
+
+                        <input type="hidden" value="@Model.Trip.Tripid" name="Id" />
+                    }
+                    <div class="form-group">
+                        <label style="font-size:14px">@ResAdmin.lbltripname</label>
+                        <input asp-for="Trip.Tripname" maxlength="20" type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="@ResAdmin.lbltripname">
+                        <span asp-validation-for="Trip.Tripname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size:14px">@ResAdmin.lbltripprice</label>
+                        <input asp-for="Trip.Tripprice" min="0" onkeydown="limit(this);" onkeyup="limit(this); asp-for="Trip.Tripprice" type="number" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="@ResAdmin.lbltripprice">
+                        <span asp-validation-for="Trip.Tripprice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size:14px">@ResAdmin.lblcategoryname</label>
+                        <select class="form-control form-control-lg" asp-for="Trip.Categoryid">
+                            <option value="">@ResAdmin.lblcategoryname</option>
+                            @foreach (var cat in Model.lstcategories)
+                            {
+                                <option value="@cat.Categoryid">@cat.Categoryname</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Trip.Categoryid"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size:14px">@ResAdmin.lblcityname</label>
+                        <select class="form-control form-control-lg" id="exampleFormControlSelect2" asp-for="Trip.Cityid" required >
+
+                            <option value="">@ResAdmin.lblcityname</option>
+                            @foreach (var cat in Model.lstcities)
+                            {
+                                <option value="@cat.Cityid">@cat.Cityname</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Trip.Cityid"></span>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-size:14px" class="label label-info"> Chose Image</label>
+                        <input name="files" value="1" type="file" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="image" required>
+                    </div>
+                    <div class="form-group">
+                        <label>@ResAdmin.lbltripdesc</label>
+                        <textarea id="text" maxlength="40"  asp-for="Trip.Tripdescreption"  class="form-control form-control-lg"  placeholder="@ResAdmin.lbltripdesc"></textarea>
+                        <span asp-validation-for="Trip.Tripdescreption" class="text-danger"></span>
+                        
+
+                            <div class="mt-3">
+                                <button  type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">@ResGeneral.lblSave</button>
+                            </div>
+                    </div>
+                    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                    @if (ViewBag.message != null)
+                    {
+                        <script>
+                            swal("Done!", "The Trip Added Successfully", "success");
+                        </script>
+                    }
+                   
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function limit(element) {
+        var max_chars = 5;
+
+        if (element.value.length > max_chars) {
+            element.value = element.value.substr(0, max_chars);
+        }
+    }
+</script>
+
+
+   
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}

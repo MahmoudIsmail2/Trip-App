@@ -1,0 +1,56 @@
+﻿@model TbTicket
+<section class="register-page section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 style="font-size:larger">@ResGeneral.lblBook</h3>
+                <div style="font-size:18px" class="theme-card">
+                    <form  asp-controller="Home" asp-action="Book" method="post" enctype="multipart/form-data" class="theme-form">
+                        <input type="hidden"  name="id" value="@ViewBag.Id" />
+                      
+                            <div class="col-md-10  ">
+
+                            <label style="font-size:18px" for="name">@ResAdmin.lblName</label>
+                            <span style="font-size:18px" class="text-danger" class="form-control" asp-validation-for="Personname"></span>
+                            <input style="font-size:18px"  class="form-control" asp-for="Personname" type="text" class="form-control" id="fname" placeholder="@ResAdmin.lblmessagename" required="">
+                               
+                            </div>
+                            <div class="col-md-10">
+                            <label style="font-size:18px" for="email">@ResAdmin.lblEmail</label>
+                            <span style="font-size:18px" class="text-danger" class="form-control" asp-validation-for="Personemail"></span>
+                            <input style ="font-size:18px" asp-for="Personemail" type="email" class="form-control" id="email" placeholder="@ResAdmin.lblmessageemail" required="">
+                               
+                                
+                            </div>
+                            <div class="col-md-10">
+
+                            <label style="font-size:18px" for="review">@ResAdmin.lblPhone</label>
+                            <span  style="font-size:18px" class="text-danger" clasa="form-control" asp-validation-for="Personphonenumber"></span>
+                            <input style="font-size:18px" asp-for="Personphonenumber" type="text" class="form-control" id="review" placeholder="@ResAdmin.lblmessagephone" required="">
+                              
+                            </div>
+                           @* <div class="col-md-6">
+                                <label for="review">Adress</label>
+                                <input  type="text"  maxlength="50"class="form-control" id="review" placeholder="@ResAdmin.lblmessageadress" required="">
+                            </div>*@
+
+                      
+                        <div class="form-row">
+                            <button  type="submit" class="btn btn-solid">@ResGeneral.lblBook</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6">   
+                <h3 style="font-size:larger">Trip Ticket</h3>
+                <div class="theme-card" style="background-color:red"></div>
+                <div class="theme-card" style="background-color:white"></div>
+                <div class="theme-card" style="background-color:black"></div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}

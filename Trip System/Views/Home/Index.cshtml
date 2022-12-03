@@ -1,0 +1,48 @@
+﻿@model List<VwTrip>
+<section class="section-b-space p-t-0 ratio_asos">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if (ViewBag.Message!= null)
+    {
+        <script>
+            swal("Good job!", "You Book The Ticket", "success");
+        </script>
+    }
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="theme-tab">
+                    <div class="tab-content-cls ">
+                        <div id="tab-4" class="tab-content active default" style="display: block;">
+                            <div class="no-slider row">
+                               
+                                @foreach (var trip in Model)
+                                {
+                                    <div class="card-body product-box ">
+  
+                                        <div>
+                                            <img src="~/Trip Home Page/@trip.Imgname" class="h-75 d-inline-block w-100" />
+
+                                        </div>
+                                        <div class="product-detail">
+                                            <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
+                                            <a href="product-page(no-sidebar).html">
+                                                <h6>@trip.Tripname</h6>
+                                            </a>
+                                            <h4>$@trip.Tripprice</h4>
+                                            <a asp-controller="Home" asp-action="TripDetails" asp-route-id="@trip.Tripid" class="btn btn-solid">@ResGeneral.lblTripDetail</a>
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+    
+}
